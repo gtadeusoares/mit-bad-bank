@@ -1,0 +1,25 @@
+{
+  "name": "littledb",
+  "version": "1.0.0",
+  "description": "lowdb sample for 1.125",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "build": "npm install",
+  "start": "node index.js",
+  "engines": {
+    "node": "16.16.0"
+  },
+  "author": "gts286@nyu.edu",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "firebase": "^9.15.0",
+    "firebase-admin": "^11.4.1",
+    "lowdb": "^1.0.0",
+    "mongodb": "^3.6.2",
+    "nodemon": "^2.0.20"
+  }
+}
