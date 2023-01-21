@@ -4,10 +4,10 @@
   "description": "lowdb sample for 1.125",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "npm install",
+    "start": "node index.js"
   },
-  "build": "npm install",
-  "start": "node index.js",
   "engines": {
     "node": "16.16.0"
   },
