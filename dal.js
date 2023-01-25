@@ -1,7 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
-// const url         = 'mongodb://localhost:27017';
-const url = process.env.MONGODB_URI; // For Heroku & Docker. 
-// const url = mongodb+srv://gsoares:admin@cluster0.4q75i.mongodb.net/?retryWrites=true&w=majority; // For local development
+// docker run -p 27017:27017 --name badbank -d mongo 
+// const url = process.env.MONGODB_URISTRING;// For docker container.
+const url = process.env.MONGODB_URI; // For heroku deployment.
+// const url = 'mongodb+srv://gsoares:admin@cluster0.4q75i.mongodb.net/?retryWrites=true&w=majority'; // For local server.
 let db            = null;
  
 // connect to mongo
@@ -13,8 +14,9 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 });
 
 // create user account
-// Parameters: user name, user email, user password, user role. 
-// returns: user information. 
+// Parameters: user name, user email, user password, user role.
+// Purpose: Create a user in the database.
+// returns: Created user information.
 function create(name, email, password, role){
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
@@ -26,8 +28,9 @@ function create(name, email, password, role){
 }
 
 // find user account
-// Parameters: user email
-// returns: user information. 
+// Parameters: user email.
+// Purpose: Finds users in the database with that email.
+// returns: Found users information.
 function find(email){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -40,8 +43,9 @@ function find(email){
 }
 
 // find user account
-// Parameters: user email
-// returns: user information. 
+// Parameters: user email.
+// Purpose: Finds a user in the database with that email.
+// returns: Found user information.
 function findOne(email){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -54,7 +58,8 @@ function findOne(email){
 
 // update - deposit/withdraw amount
 // Parameters: user email, amount.
-// returns: user information with updated balance. 
+// Purpose: Updates user balance.
+// returns: Updated users information.
 function update(email, amount){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -73,8 +78,9 @@ function update(email, amount){
 }
 
 // all users
-// Parameters: none
-// returns: all users' information. 
+// Parameters: none.
+// Purpose: Finds all users in the database.
+// returns: Returns all users' information.
 function all(){
     return new Promise((resolve, reject) => {    
         const customers = db
