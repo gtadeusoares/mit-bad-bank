@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports: 
+      - "3000:3000"
+    links:
+      - mongo
+    command: "node index.js"
+    environment:
+      - MONGODB_URISTRING=mongodb+srv://gsoares:admin@cluster0.4q75i.mongodb.net/?retryWrites=true&w=majority
+      - MONGODB_CONNSTRING=mongodb://gsoares:admin@mongodb
+  mongo:
+    image: mongo
+    # ports:
+    #   - "27017:27017"
+    environment:
+      - MONGO_INIT_ROOT_USERNAME=gsoares
+      - MONGO_INIT_ROOT_PASSWORD=admin
+    restart: always
