@@ -8,6 +8,10 @@ app.use(express.static('public'));
 app.use(cors());
 
 // create user account
+// endpoint: '/account/create/:name/:email/:password/:role'
+// parameters: user name, user email, user password, user role
+// purpose: create user
+// returns: created user information
 app.get('/account/create/:name/:email/:password/:role', function (req, res) {
 
     // check if account exists
@@ -31,6 +35,10 @@ app.get('/account/create/:name/:email/:password/:role', function (req, res) {
 
 
 // login user 
+// endpoint: '/account/login/:email/:password'
+// parameters: user email, user password
+// purpose: login user
+// returns: logged in user information
 app.get('/account/login/:email/:password', function (req, res) {
 
     dal.find(req.params.email).
@@ -52,6 +60,10 @@ app.get('/account/login/:email/:password', function (req, res) {
 });
 
 // find user account
+// endpoint: '/account/find/:email'
+// parameters: user email
+// purpose: find user in database
+// returns: found user information
 app.get('/account/find/:email', function (req, res) {
 
     dal.find(req.params.email).
@@ -62,6 +74,10 @@ app.get('/account/find/:email', function (req, res) {
 });
 
 // find one user by email - alternative to find
+// endpoint: '/account/findOne/:email'
+// parameters: user email
+// purpose: find a user in the database
+// returns: found user information
 app.get('/account/findOne/:email', function (req, res) {
 
     dal.findOne(req.params.email).
@@ -73,6 +89,10 @@ app.get('/account/findOne/:email', function (req, res) {
 
 
 // update - deposit/withdraw amount
+// endpoint: '/account/update/:email/:amount'
+// parameters: user email, amount
+// purpose: update user's balance
+// returns: updated user's information
 app.get('/account/update/:email/:amount', function (req, res) {
 
     var amount = Number(req.params.amount);
@@ -85,6 +105,10 @@ app.get('/account/update/:email/:amount', function (req, res) {
 });
 
 // all accounts
+// endpoint: '/account/all'
+// parameters: none
+// purpose: return all users.
+// returns: all users.
 app.get('/account/all', function (req, res) {
     dal.all().
         then((docs) => {
